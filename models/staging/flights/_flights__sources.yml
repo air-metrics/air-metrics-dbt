@@ -1,0 +1,81 @@
+sources:
+  - name: demo_src
+    description: Data from the flight database
+    tables:
+      - name: aircrafts
+        description: Models of aircraft
+        columns:
+          - name: aircraft_code
+            description: Model code of the aircraft
+          - name: model
+            description: Name of the model aircraft 
+          - name: range 
+            description: unknown name
+      - name: airports
+        description: Airports
+        columns:
+          - name: airport_code
+          - name: airport_name
+          - name: city
+          - name: coordinates
+          - name: timezone
+      - name: seats
+        description: Seats in the aircraft 
+        columns:
+          - name: aircraft_code
+          - name: seat_no
+          - name: fare_conditions
+      - name: bookings
+        columns:
+          - name: book_ref
+          - name: book_date
+          - name: total_amount
+        freshness:
+          warn_after:
+            count: 600000
+            period: hour
+          error_after:
+            count: 10000
+            period: day
+          filter: current_timestamp::date - book_date::date < 30000
+        loaded_at_field: book_date::timestamp
+      - name: boarding_passes
+        columns:
+          - name: ticket_no
+          - name: flight_id
+          - name: boarding_no
+          - name: seat_no
+      - name: flights
+        columns:
+          - name: flight_id
+          - name: flight_no
+          - name: scheduled_departure
+          - name: scheduled_arrival
+          - name: departure_airport
+          - name: arrival_airport
+          - name: status
+          - name: aircraft_code
+          - name: actual_departure
+          - name: actual_arrival
+        freshness:
+          warn_after:
+            count: 600000
+            period: hour
+          error_after:
+            count: 10000
+            period: day
+          filter: current_timestamp::date - actual_departure::date < 30000
+        loaded_at_field: actual_departure::timestamp
+      - name: ticket_flights
+        columns:
+          - name: ticket_no 
+          - name: flight_id
+          - name: fare_conditions
+          - name: amount
+      - name: tickets
+        columns:
+          - name: ticket_no
+          - name: book_ref 
+          - name: passenger_id 
+          - name: passenger_name 
+          - name: contact_data 
