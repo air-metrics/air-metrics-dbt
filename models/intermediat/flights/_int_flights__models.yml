@@ -1,0 +1,65 @@
+models:
+  - name: fct_bookings
+    description: Booking fact table
+    docs:
+      show: true
+      node_color: red
+    latest_version: 1
+    versions:
+      - v: 1
+    config:
+      contract: {enforced: true}
+    meta:
+      owner: "test@gmail.com"
+      contact_tg: test_contact
+      status: in_dev
+    
+    columns:
+      - name: book_ref
+        data_type: varchar(8)
+        constraints:
+          - type: not_null
+      - name: book_date
+        data_type: timestamptz
+      - name: total_amount
+        data_type: numeric(10,2)
+        constraints:
+        - type: check
+          expression: "total_amount > 0"
+        tests:
+          - not_null
+        meta:
+          owner: finance_team
+  - name: fct_ticket_flights
+    description: Ticket flight fact table
+    docs:
+      show: true
+      node_color: green
+    latest_version: 1
+    versions:
+      - v: 1
+    config:
+      contract: {enforced: true}
+    meta:
+      owner: "test@gmail.com"
+      contact_tg: test_contact
+      status: in_dev
+    
+    columns:
+      - name: ticket_no
+        data_type: char(13)
+        constraints:
+          - type: not_null
+      - name: flight_id
+        data_type: int
+      - name: fare_conditions
+        data_type: varchar(10)
+      - name: amount
+        data_type: numeric(10,2)
+        constraints:
+        - type: check
+          expression: "amount > 0"
+        tests:
+          - not_null
+        meta:
+          owner: finance_team
