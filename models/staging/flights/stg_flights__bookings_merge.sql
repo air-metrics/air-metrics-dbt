@@ -3,7 +3,9 @@ config(
 	  materialized = 'incremental',
 	  incremental_strategy = 'merge',
 	  unique_key = ['book_ref'],
-	  tags = ['bookings']
+	  tags = ['bookings'],
+	  merge_update_columns = ['total_amount'],
+	  on_schema_change = 'ignore'
 )
 
 }}
