@@ -1,4 +1,4 @@
-Welcome to your new dbt project for dbt_course_practice!
+Welcome to your new dbt project for air-metrics-dbt!
 
 ### Using the starter project
 
