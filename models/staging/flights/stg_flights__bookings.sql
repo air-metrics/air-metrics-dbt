@@ -1,6 +1,7 @@
 {{ 
 config(
-	  materialized = 'view'
+	  materialized = 'table',
+	  tags = ['bookings']
 )
 
 }}
@@ -10,4 +11,5 @@ book_date,
 total_amount
 
 from {{ source('demo_src', 'bookings') }}
+
     
