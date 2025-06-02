@@ -1,0 +1,15 @@
+seeds:
+  - name: city_region
+    description: "A mapping of cities to their respective regions."
+    config:
+      column_types:
+        city: varchar(50)
+        region: varchar(50)
+        updated_at: timestamp
+      delimiter: ";"
+    columns:
+      - name: city
+        description: "The name of the city."
+        tests:
+          - unique
+          - not_null

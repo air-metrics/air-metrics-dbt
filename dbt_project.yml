@@ -1,12 +1,11 @@
-
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'dbt_course_practice'
+name: 'air_metrics_dbt'
 version: '1.0.0'
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'dbt_course_practice'
+profile: 'air_metrics_dbt'
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
@@ -30,7 +29,16 @@ clean-targets:         # directories to be removed by `dbt clean`
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 models:
-  dbt_course_practice:
+  air_metrics_dbt:
     # Config indicated by + and applies to all files under models/example/
     example:
       +materialized: view
+    staging:
+      +tags: "staging"
+    intermediat:
+      +tags: "intermediate"
+
+
+
+seeds:
+  schema: seeds
