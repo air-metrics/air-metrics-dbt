@@ -10,3 +10,4 @@ where
 group by
   scheduled_departure::date 
   
+  

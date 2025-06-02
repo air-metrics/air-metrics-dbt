@@ -16,4 +16,6 @@ select
   actual_arrival
 
 from {{ source('demo_src', 'flights') }}
-    
+{% if target.name == 'dev' %} 
+  limit 500
+{% endif %}
